@@ -13,6 +13,10 @@ app.get('/', (req, res)=>{
 
 });
 
+app.get('/test', (req, res)=>{
+    res.status(200).json({message: "test route"})
+})
+
 app.get('/users', async(req, res)=>{
     try{
         await fillDummyData();
