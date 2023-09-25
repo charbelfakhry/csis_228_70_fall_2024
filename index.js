@@ -22,7 +22,7 @@ app.get('/test', (req, res)=>{
 
 app.get('/users', async(req, res)=>{
     try{
-        const userSQL = `SELECT * FROM users111`;
+        const userSQL = `SELECT * FROM users`;
         const users = await query(userSQL);
         res.status(200).json({users});
     }catch(error){
