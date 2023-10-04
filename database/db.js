@@ -6,9 +6,9 @@ var connection;
 const connect = async()=>{
     try{
         connection = await mysql.createConnection(config.db);
-        console.log("========================================");
+        console.log("====================================================");
         console.log(`>>>> Connection to ${process.env.DB_NAME} SUCCESSFUL`);
-        console.log("========================================");
+        console.log("====================================================");
     }catch(error){
         console.error(`>>> Error connecting to ${process.env.DB_NAME}`, error);
         process.exit();

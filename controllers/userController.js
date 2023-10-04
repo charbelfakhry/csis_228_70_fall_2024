@@ -1,4 +1,4 @@
-const { loadUser } = require("../services/userService")
+const { loadUser, insertUser } = require("../services/userService")
 
 const getAllUsersController = async(req, res) =>{
     /**
@@ -14,6 +14,16 @@ const getAllUsersController = async(req, res) =>{
     }
 }
 
+const insertUserController = async(req, res)=>{
+    const {user} = req.body;
+    if(user){
+        return res.status(400).json({message: "missing data"});
+    }
+    const response = await insertUser(user);
+    res.status(200).json({response});
+}
+
 module.exports = {
     getAllUsersController,
+    insertUserController,
 }
