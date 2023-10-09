@@ -17,7 +17,6 @@ const connect = async()=>{
 
 const query = async(sql, params) =>{
     
-
     if(!connection){
         await connect();
     }

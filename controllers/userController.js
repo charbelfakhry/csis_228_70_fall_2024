@@ -15,11 +15,11 @@ const getAllUsersController = async(req, res) =>{
 }
 
 const insertUserController = async(req, res)=>{
-    const {user} = req.body;
-    if(user){
+    const {user_first_name, user_last_name, user_email, user_password, user_dob} = req.body;
+    if(!user_first_name || !user_last_name || !user_email){
         return res.status(400).json({message: "missing data"});
     }
-    const response = await insertUser(user);
+    const response = await insertUser(user_first_name, user_last_name, user_email, user_password, user_dob);
     res.status(200).json({response});
 }
 
