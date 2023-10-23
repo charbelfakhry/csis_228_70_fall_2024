@@ -1,4 +1,5 @@
 const { loadUser, insertUser } = require("../services/userService")
+const {validationResult} = require("express-validator")
 
 const getAllUsersController = async(req, res) =>{
     /**
@@ -15,15 +16,36 @@ const getAllUsersController = async(req, res) =>{
 }
 
 const insertUserController = async(req, res)=>{
-    const {user_first_name, user_last_name, user_email, user_password, user_dob} = req.body;
-    if(!user_first_name || !user_last_name || !user_email){
-        return res.status(400).json({message: "missing data"});
+
+    const errors = validationResult(req);
+
+    if(!errors.isEmpty())
+    {
+        return res.status(400).json({errors: errors.array()});
     }
+
+    const {user_first_name, user_last_name, user_email, user_password, user_dob} = req.body;
+    
     const response = await insertUser(user_first_name, user_last_name, user_email, user_password, user_dob);
+    res.status(200).json({response});
+}
+
+const updateUserController = async (req, res) =>{
+
+    const errors = validationResult(req);
+    if(!errors.isEmpty())
+    {
+        return res.status(400).json({errors: errors.array()});
+    }
+
+    const {user_id, user_first_name, user_last_name, user_email, user_password, user_dob} = req.body;
+    
+    const response = await insertUser(user_id, user_first_name, user_last_name, user_email, user_password, user_dob);
     res.status(200).json({response});
 }
 
 module.exports = {
     getAllUsersController,
     insertUserController,
+    updateUserController,
 }

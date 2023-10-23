@@ -36,9 +36,9 @@ const insertUser = async(user_first_name, user_last_name, user_email, user_passw
     return user;
 }
 
-const updateUser = async(user)=>{
-    let sql = `UPDATE user SET user_first_name = ?, user_last_name = ? WHERE user_id = ?`;
-    const response = await query(sql, [user?.first_name, user?.last_name, user?.user_id]);
+const updateUser = async(user_id, user_first_name, user_last_name, user_email, user_password, user_dob)=>{
+    let sql = `UPDATE user SET user_first_name = ?, user_last_name = ?, user_email, user_password, user_dob WHERE user_id = ?`;
+    const response = await query(sql, [user_first_name, user_last_name, user_email, user_password, moment(user_dob).format("YYYY-MM-DD"), user_id]);
     return response;
 }
 

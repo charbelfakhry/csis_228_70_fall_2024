@@ -1,9 +1,12 @@
 const express = require('express');
-const { getAllUsersController, insertUserController } = require('../controllers/userController');
+const { getAllUsersController, insertUserController, updateUserController } = require('../controllers/userController');
+const { insertUserValidation, updateUserValidation } = require('../validations/users-validator');
 const router = express.Router();
 
 router.get('/getAllUsers', getAllUsersController);
-router.post('/insertUser', insertUserController);
+router.post('/insertUser', insertUserValidation, insertUserController);
+router.put('/updateUser', updateUserValidation, updateUserController);
+
 
 
 
