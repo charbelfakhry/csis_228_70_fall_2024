@@ -17,6 +17,7 @@ const getAllUsersController = async(req, res) =>{
 
 const insertUserController = async(req, res)=>{
 
+    // validating using express validator
     const errors = validationResult(req);
 
     if(!errors.isEmpty())

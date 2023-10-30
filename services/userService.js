@@ -22,18 +22,24 @@ const loadUserById = async(id) =>{
         return users;
 }
 
-const insertUser = async(user_first_name, user_last_name, user_email, user_password, user_dob) =>{
-    let sql = `INSERT INTO users (user_first_name, user_last_name, user_email, user_password, user_dob)
+const insertUser = async (user_first_name, user_last_name, user_email, user_password, user_dob) => {
+
+    try {
+        let sql = `INSERT INTO users (user_first_name, user_last_name, user_email, user_password, user_dob)
     VALUES
     (?, ?, ?, ?, ?)`;
 
-    const response = await query(sql, [user_first_name, user_last_name, user_email, user_password, moment(user_dob).format("YYYY-MM-DD")]);
+        const response = await query(sql, [user_first_name, user_last_name, user_email, user_password, moment(user_dob).format("YYYY-MM-DD")]);
 
-    var user = await query("SELECT * FROM users WHERE user_id = ?", [response?.insertId]);
+        var user = await query("SELECT * FROM users WHERE user_id = ?", [response?.insertId]);
 
-    user[0].user_dob = moment(user[0].user_dob).format("YY-MM-DD");
+        user[0].user_dob = moment(user[0].user_dob).format("YY-MM-DD");
 
-    return user;
+        return user;
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
 }
 
 const updateUser = async(user_id, user_first_name, user_last_name, user_email, user_password, user_dob)=>{
