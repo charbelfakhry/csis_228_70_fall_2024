@@ -22,6 +22,5 @@ Follow these steps to get your Node.js API Backend up and running:
 1. Clone this repository to your local development environment:
 
    ```bash
-   git clone https://github.com/your-username/your-nodejs-api-backend.git
+   git clone https://github.com/charbelfakhry/csis_228_70_fall_2024.git
    ```
-   
