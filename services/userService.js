@@ -16,12 +16,33 @@ const loadUser = async() =>{
     }
 }
 
+
+const authenticate = async() =>{
+    try{
+        let sql = `select * from users where user_username = ? and user_password`;
+        const user = await query(sql);
+        return user[0];
+    }catch(error){
+        throw new Error(error);
+    }
+}
+
 const loadUserById = async(id) =>{
     let sql = `select * from users WHERE user_id = ?`;
         const users = await query(sql, [id]);
         return users;
 }
 
+/**
+ * 
+ * @param {string} user_first_name 
+ * @param {string} user_last_name 
+ * @param {string} user_email 
+ * @param {string} user_password 
+ * @param {date} user_dob 
+ * This service method is used to insert user into mysql databse using native SQL
+ * @returns insertedUser
+ */
 const insertUser = async (user_first_name, user_last_name, user_email, user_password, user_dob) => {
 
     try {
@@ -82,4 +103,5 @@ module.exports = {
     updateUser,
     deleteUser,
     loadUserById,
+    authenticate,
 }

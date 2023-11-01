@@ -9,11 +9,7 @@ Welcome to the CSIS 228 API Backend repository! This repository contains the cod
 - [Configuration](#configuration)
 - [Dependencies](#dependencies)
 - [Development](#development)
-- [Testing](#testing)
-- [Deployment](#deployment)
-- [API Documentation](#api-documentation)
-- [Contributing](#contributing)
-- [License](#license)
+- [Exampe](#example)
 
 ## Getting Started
 

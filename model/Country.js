@@ -29,9 +29,4 @@ const Country = sequelize.define('Country', {
 }
 );
 
-// it has error we need to fix.
-Country.associate = () =>{
-    Country.hasMany(Client, {foreignKey: 'country_id'});
-}
-
 module.exports = Country;
