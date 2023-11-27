@@ -63,12 +63,27 @@ const insertUser = async (user_first_name, user_last_name, user_email, user_pass
     }
 }
 
+/**
+ * updates user information in the database
+ * @param {number} user_id - The unique identifier of the user
+ * @param {string} user_first_name - The updated firstname of the user
+ * @param {string} user_last_name - the updated lastname of the user
+ * @param {string} user_email - the updated email of the user
+ * @param {string} user_password - the updatd password of hte user
+ * @param {Date} user_dob - the updated dob of the user
+ * @returns {user}
+ */
 const updateUser = async(user_id, user_first_name, user_last_name, user_email, user_password, user_dob)=>{
     let sql = `UPDATE user SET user_first_name = ?, user_last_name = ?, user_email, user_password, user_dob WHERE user_id = ?`;
     const response = await query(sql, [user_first_name, user_last_name, user_email, user_password, moment(user_dob).format("YYYY-MM-DD"), user_id]);
     return response;
 }
 
+/**
+ * deletes user information in the database
+ * @param {number} id - the UI of the user
+ * @returns {Object}
+ */
 const deleteUser = async (id) =>{
     let sql = `DELETE from user WHERE user_id = ?`;
     const response = await query(sql, [id]);

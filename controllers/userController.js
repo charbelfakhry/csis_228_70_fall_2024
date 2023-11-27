@@ -1,4 +1,4 @@
-const jwt = require("jswonwebtoken");
+const jwt = require("jsonwebtoken");
 const { loadUser, insertUser, authenticate } = require("../services/userService")
 const { validationResult } = require("express-validator")
 

@@ -19,8 +19,14 @@ const updateUserValidation = [
     check('user_email').isEmail().withMessage("Wrong Email format.")
 ];
 
+const getUserByIdValidation = [
+    check('user_id').notEmpty().withMessage("user id is required"),
+    check('user_id').isNumeric().withMessage("user id must be a number"),
+]
+
 
 module.exports = {
     insertUserValidation,
     updateUserValidation,
+    getUserByIdValidation,
 }
