@@ -18,7 +18,9 @@ app.use(bodyParser.json());
 
 app.use(cors({origin: '*'}));
 
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
+
+app.use(express.static('public'));
 
 const userRoute = require("./routes/user.route");
 const { getTypicode, getTypicodeByUserId } = require("./services/fetchData");
