@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { loadUser, insertUser, authenticate } = require("../services/userService")
+const { loadUser, insertUser, authenticate, deleteUser } = require("../services/userService")
 const { validationResult } = require("express-validator")
 
 
@@ -17,6 +17,18 @@ const authenticateController = async(req, res) =>{
 
     const token = jwt.sign({userId: result?.user_id}, process.env.SECRET_KEY);
     res.status(200).json({message: "authenticated", user: result, token: token});
+}
+
+const deleteUserController = async(req, res) =>{
+    const {user_id} = req.params;
+    await deleteUser(user_id);
+    // you should go to another page
+    //res.render("index");
+    res.redirect("/");
+}
+
+const loadUserFormController = async(req, res)=>{
+    res.render("user");
 }
 
 const getAllUsersController = async (req, res) => {
@@ -45,7 +57,10 @@ const insertUserController = async (req, res) => {
     try {
         const { user_first_name, user_last_name, user_email, user_password, user_dob } = req.body;
         const response = await insertUser(user_first_name, user_last_name, user_email, user_password, user_dob);
-        res.status(200).json({ response });
+        //res.status(200).json({ response });
+        //res.redirect("/homepate")
+        let data = await loadUser();
+        res.render("detailUser", data);
     } catch (error) {
         res.status(500).json({ error: "error inserting user" });
     }
@@ -69,4 +84,6 @@ module.exports = {
     insertUserController,
     updateUserController,
     authenticateController,
+    deleteUserController,
+    loadUserFormController
 }

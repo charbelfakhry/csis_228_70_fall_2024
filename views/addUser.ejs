@@ -13,5 +13,15 @@
   <!-- Add your form for adding a user -->
 
   <%- include('partials/footer') %>
+
+  <form action="/api/users/insertUser" method="post">
+    
+    <input type="text" name="user_username" />
+    <input type="password" name="user_password" />
+    <input type="date" name="user_dob" />
+
+    <input type="submit" class="btn btn-primary" />
+
+  </form>
 </body>
 </html>

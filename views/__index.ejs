@@ -39,6 +39,7 @@
             <th>Password</th>
             <th>DOB</th>
             <th>Order#</th>
+            <th>Del</th>
           </thead>
           <tbdoy>
             <% for(let i = 0; i < users.length; i++){ %>
@@ -53,6 +54,9 @@
                   <button type="button" class="btn btn-info">
                     Notifications <span class="badge badge-light"><%= users[i].order_count %></span>
                   </button>
+                </td>
+                <td>
+                  <a class="btn btn-danger" href="/api/users/deleteUser/<%= users[i].user_id %>">Del.</a>
                 </td>
               </tr>
             <% } %>
